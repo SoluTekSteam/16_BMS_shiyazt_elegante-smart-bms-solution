@@ -1,0 +1,6 @@
+{
+    "device_telemetry": "api/v1/bms/device_token/telemetry",
+    "gateway_telemetry": "api/v1/bms/gateway_token/telemetry",
+    "device_metadata": "api/v1/bms/device_token/metadata",
+    "gateway_metadata": "api/v1/bms/gateway_token/metadata"
+}
