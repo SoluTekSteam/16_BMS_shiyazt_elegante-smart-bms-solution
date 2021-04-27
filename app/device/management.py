@@ -106,14 +106,26 @@ def listDevices(collection):
 def saveDeviceTelemetry(db, deviceToken, payload: dict, ts: int) -> bool:
     try:
         collection = db.selectCollection(name='devices')
-        query = collection.find_one({'token': deviceToken}, { 'telemetry': 1, 'metadata': 1 })
-        telbuffer: dict = copy.deepcopy(query['telemetry'])
-        for item in payload.keys():
-            telbuffer[item] = payload[item]
-        metabuffer: dict = copy.deepcopy(query['metadata'])
-        metabuffer['last_updated'] = ts
-        ret = collection.update_one({'_id': ObjectId(query['_id'])},
-                                    {"$set": {'telemetry': telbuffer, 'metadata': metabuffer}})
+        query = collection.find_one({'token': deviceToken}, { 'userId' : 1, 'telemetry': 1, 'metadata': 1 })
+        # print(f"[DEBUG] token: {deviceToken}, query: {query}")
+        search_1 = "telemetry"
+        search_2 = "metadata"
+        if search_1 in query and search_2 in query:
+            telbuffer: dict = copy.deepcopy(query['telemetry'])
+            for item in payload.keys():
+                telbuffer[item] = [ts, payload[item]]
+            metabuffer: dict = copy.deepcopy(query['metadata'])
+            metabuffer['last_updated'] = ts
+            ret = collection.update_one({'_id': ObjectId(query['_id'])},
+                                        {"$set": {'telemetry': telbuffer, 'metadata': metabuffer}})
+        else:
+            telbuffer = {}
+            for item in payload.keys():
+                telbuffer[item] = payload[item]
+            metabuffer: dict = {}
+            metabuffer['last_updated'] = ts
+            ret = collection.update_one({'_id': ObjectId(query['_id'])},
+                                        {"$set": {'telemetry': telbuffer, 'metadata': metabuffer}})
         if ret:
             print(f"[DEBUG] Latest Telemetry Updated ...[OK]")
 
