@@ -35,14 +35,14 @@ def createTelemetryDocument(db) -> bool:
 def createTelemetry(db, userId: str, deviceId: str, telemetry: dict, ts: int) -> bool:
     try:
         collection = db.selectCollection(name='telemetry')
-        print(f"[INFO] collection : {collection}")
+        # print(f"[INFO] collection : {collection}")
         ret = collection.insert_one({
             "userId": ObjectId(userId),
             "deviceId": ObjectId(deviceId),
             "telemetry": telemetry,
             "ts": ts
         })
-        print(f"[DEBUG] insert: {ret}")
+        # print(f"[DEBUG] insert: {ret}")
         if ret:
             return True
         else:

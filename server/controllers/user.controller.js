@@ -21,7 +21,7 @@ exports.signUpUser = async(req, res) => {
         const { email, password, midname, firstname, lastname } = req.body;
         let buffer = await User.findOne({email : email});
         if (buffer){
-            return res.status(400).json({errors: [{msg: 'User already registered'}]});
+            return res.status(400).json({error: 'User already registered'});
         }
         const role = 'admin';
         const ts = Math.floor(Date.now()/1000);

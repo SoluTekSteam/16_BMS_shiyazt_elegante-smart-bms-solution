@@ -36,6 +36,29 @@ router.get('/getTypes', Auth, DeviceController.getDeviceTypes);
 router.get('/getDetails/:deviceId', Auth, DeviceController.getDeviceDetails);
 
 
+/*
+    API : /api/elegante/v1/device/getLatestTelemetry/:deviceId;
+    Method : GET
+    Description : Get Devices Latest Telemetry
+*/
+router.get('/getLatestTelemetry/:deviceId', Auth, DeviceController.getDeviceLatestTelemtry);
+
+
+/*
+    API : /api/elegante/v1/device/getTelemetry/:deviceId;
+    Method : GET
+    Description : Get Devices Telemetry
+*/
+router.get('/getTelemetry/:deviceId', Auth, DeviceController.getDeviceTelemtries);
+
+
+/*
+    API : /api/elegante/v1/device/getDeviceAlarms/:deviceId;
+    Method : GET
+    Description : Get Device Alarms
+*/
+router.get('/getDeviceAlarms/:deviceId', Auth, DeviceController.getDeviceAlarms);
+
 
 //POST
 
@@ -54,6 +77,16 @@ router.post('/addDevice', [Auth, [
 
 
 //PUT
+
+/*
+    API : /api/elegante/v1/device/clearAlarm/:alarmId;
+    Method : PUT
+    Description : Clear Device Alarms
+*/
+router.put('/clearAlarm/:alarmId', [Auth.apply, [
+    check('ts', 'Timestamp field is required').notEmpty(),
+    check('msg', 'Message field is required').notEmpty(),
+]], DeviceController.clearDeviceAlarm);
 
 //DELETE
 

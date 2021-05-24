@@ -1,7 +1,9 @@
 import paho.mqtt.client as mqtt
 import time
+# import sys
+# sys.path.append("..")
 from dbUtils import dbConnector
-from device.management import entityHandler
+from rulesManagement.main import dataHandler
 import json
 
 isConnected: bool = False
@@ -12,32 +14,19 @@ def on_connect(client, userdata, flags, rc):
     if rc == 0:
         isConnected = True
         print(f"[INFO] MQTT Connetion Successfull ...[OK]")
-        client.subscribe(topic="api/v1/bms/+/telemetry", qos=1)
+        client.subscribe(topic="api/v1/bms/controlcenter/msg", qos=1)
+        print(f"[DEBUG] Subscribed to rule chain messages")
     else:
         print("Connected with result code " + str(rc))
 
 
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
-    ret = msg.topic.split("/")
-    entityToken: str = ret[-2]
-    msgType: str = ret[-1]
-    ret = entityHandler(db, entityToken, msgType, payload=msg.payload)
-    if ret['status']:
-        # Send to rule chain
-        # Prepare Payload
-        deviceData: dict = {
-            'msg': json.loads(msg.payload),
-            'metadata': {
-                'deviceName': ret['deviceName'],
-                'deviceType': ret['deviceType'],
-                'deviceId': ret['deviceId']
-            }
-        }
-        print(f"[DEBUG] deviceData: {deviceData}")
-        client.publish(topic='api/v1/bms/controlcenter/msg', payload=json.dumps(deviceData))
-    else:
-        print(f"[ERROR] Entity Handler Failed")    
+    # print(msg.topic+" "+str(msg.payload))
+    print(f"[DEBUG] Received MQTT Message")
+    if msg.topic.lower() == 'api/v1/bms/controlcenter/msg':
+        deviceData: dict = json.loads(msg.payload)
+        # print(f"Msg Payload")
+        dataHandler(db, deviceData)
 
 if __name__ == "__main__":
     try:

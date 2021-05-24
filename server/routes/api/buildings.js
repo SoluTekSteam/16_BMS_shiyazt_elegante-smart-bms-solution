@@ -28,6 +28,23 @@ router.get('/getBuildings', Auth, BuildingController.getBuildings);
 */
 router.get('/getBuilding/:buildingId', Auth, BuildingController.getBuildingDetails);
 
+
+/*
+    API : /api/elegante/v1/building/getBuildingAlarms/:buildingId;
+    Method : GET
+    Description : Get Building Alarms
+*/
+router.get('/getBuildingAlarms/:buildingId', Auth, BuildingController.getBuildingAlarms);
+
+
+/*
+    API : /api/elegante/v1/building/getUserAlarms;
+    Method : GET
+    Description : Get All User Alarms
+*/
+router.get('/getUserAlarms', Auth, BuildingController.getUserAlarms);
+
+
 //POST
 
 /*

@@ -2,6 +2,8 @@ import { React, Fragment, useEffect, useState } from 'react';
 import axios from '../hoc/axiosProvider';
 import Cookies from 'js-cookie';
 import { Link as Linker } from 'react-router-dom';
+import moment from 'moment';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
     Grid,
@@ -16,10 +18,21 @@ import {
     TablePagination,
     Snackbar,
     Link,
-    IconButton
+    IconButton,
+    Fab,
+    Tooltip as tooltip,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    TextField,
+    Button
 
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import AddIcon from '@material-ui/icons/Add';
+
 
 // Leaflet
 import { 
@@ -37,6 +50,22 @@ import L from 'leaflet';
 import Marker1 from '../../assets/map-markers/1.svg';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+import CloseIcon from '@material-ui/icons/Close';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        border: "1px solid red"
+    },
+    alarmTableOriginator: {
+        fontWeight: 'bold',
+        color: '#bf360c'
+    },
+    alarmTableType: {
+        fontWeight: 'bold',
+        color: '#ff8f00'
+    }
+}))
 
 
 var busyIcon = new L.Icon({
@@ -51,6 +80,8 @@ var busyIcon = new L.Icon({
 
 const Home = () => {
 
+    const classes = useStyles();
+
     const [state, setState] = useState({
         entities: [],
         selected_entity: {
@@ -59,8 +90,20 @@ const Home = () => {
             address: null,
             descriptin: null,
             contact: null
+        },
+        alarms: [],
+        alarmStats: {},
+        newBuilding: {
+            name: "",
+            description: "",
+            address: "",
+            contact: "",
+            latitude: 0,
+            longitude: 0
         }
     });
+
+    const [addMode, setAddMode] = useState(false);
 
     //Notification states
     const [appAlert, setappAlert] = useState(false);
@@ -105,6 +148,128 @@ const Home = () => {
         fetchDetails();
     }, []);
 
+
+    useEffect(() => {
+        const fetchAlarms = async() => {
+            try{
+                let res = await axios.get(`/api/elegante/v1/building/getUserAlarms`, {
+                    headers : {
+                        "X-Authorization" : Cookies.get('elegante')
+                    },
+                });
+                // console.log(res.data);
+                if (res.status == 200){
+                    setState(prevState => {
+                        const state = {...prevState};
+                        state.alarms.length = 0
+                        res.data.forEach(item => {
+                            state.alarms.push(item)
+                        })
+                        return state;
+                    });
+                    // console.log(state);
+                    calcAlarmStats()
+                }
+            }catch(error){
+                setalertType('error');
+                setalertMsg('Error while fetching building');
+                setappAlert(true);
+            }
+        }
+
+        const calcAlarmStats = () => {
+            console.log(state.alarms)
+            setState(prevState => {
+                const state = {...prevState};
+                var critical_active = state.alarms.filter(item => item.severity.toString() == "critical" && item.active == true)
+                var critical_cleared = state.alarms.filter(item => item.severity.toString() == "critical" && item.active == false)
+                var warning_active = state.alarms.filter(item => item.severity.toString() == "warning" && item.active == true)
+                var warning_cleared = state.alarms.filter(item => item.severity.toString() == "warning" && item.active == false)
+
+                var stats = {
+                    criticalAlarms: [critical_active.length, critical_cleared.length],
+                    warningAlarms: [warning_active.length, warning_cleared.length]
+                }
+                Object.assign(state.alarmStats, stats)
+                return state;
+            });
+        }
+
+        fetchAlarms()
+        
+    }, []);
+
+
+    const addBuildingDialog = (
+        <Fragment>
+            <Dialog open={addMode} onClose={() => {setAddMode(false)}}>
+                <DialogTitle>Add Building</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please add following details to add a new building.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Building Name"
+                        type="string"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="address"
+                        label="Address"
+                        type="string"
+                        fullWidth
+                        multiline
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label="Description"
+                        type="string"
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="latitude"
+                        label="Latitude"
+                        type="number"
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="longitude"
+                        label="Longitude"
+                        type="number"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary">SAVE</Button>
+                    <Button color="secondary" onClick={() => {setAddMode(false)}}>CANCEL</Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment>
+    )
+
+
+    const handlerAddBuilding = () => {
+        setState(prevState => {
+            const state = {...prevState};
+            state.newBuilding.name = ""
+            state.newBuilding.address = ""
+            state.newBuilding.description = ""
+            state.newBuilding.latitude = 0
+            state.newBuilding.longitude = 0
+            return state;
+        })
+        setAddMode(true)
+    }
+
     return(
         <Fragment>
             <Grid container spacing={3}>
@@ -114,7 +279,7 @@ const Home = () => {
                 <Grid item xs={12} sm={12} md={10} lg={8} xl={7}>
 
                     <Paper elevation={3} style={{ height: '450px' }}>
-                        <MapContainer center={[10.0094, 76.3441]} zoom={13} scrollWheelZoom={true}>
+                        <MapContainer center={[0,0]} zoom={2} scrollWheelZoom={true}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -203,36 +368,77 @@ const Home = () => {
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Paper elevation={3} style={{ padding: '5px' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Buildings Alarm</Typography>
-                        <TableContainer style={{ minHeight: '300px' }}>
+                        <TableContainer style={{ minHeight: '300px', maxHeight: '400px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Timestamp</TableCell>
+                                        <TableCell>Active</TableCell>
                                         <TableCell>Originator</TableCell>
                                         <TableCell>Building</TableCell>
                                         <TableCell>Floor</TableCell>
-                                        <TableCell>Device</TableCell>
-                                        <TableCell>Sevrity</TableCell>
+                                        <TableCell>Type</TableCell>
+                                        <TableCell>Severity</TableCell>
                                         <TableCell>Status</TableCell>
                                         <TableCell>Actions</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableRow>
-                                        <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Active Alarms</TableCell>
-                                    </TableRow>
+                                    {
+                                        state.alarms && state.alarms.length > 0 ? (
+                                            state.alarms.map((item, index) => (
+                                                <TableRow key={index}>
+                                                    <TableCell>{moment(item.ts * 1000).format('DD/MM/YY HH:mm:ss')}</TableCell>
+                                                    {
+                                                        item.active.toString() == "true" ? (
+                                                            <TableCell>
+                                                                <div style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: '#F00', boxShadow: "#000 0 -1px 6px 1px"}}>
+                                                                </div>
+                                                            </TableCell>
+                                                        ) : (
+                                                            <TableCell>
+                                                                <div style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: '#81c784', boxShadow: "#000 0 -1px 6px 1px"}}>
+                                                                </div>
+                                                            </TableCell>
+                                                        )
+                                                    }
+                                                    <TableCell className={classes.alarmTableOriginator}>{item.originatorName}</TableCell>
+                                                    <TableCell>{item.buildingName}</TableCell>
+                                                    <TableCell>{item.floorName}</TableCell>
+                                                    <TableCell className={classes.alarmTableType}>{item.type}</TableCell>
+                                                    <TableCell style={
+                                                        item.severity.toString() == "critical" ? {
+                                                            color: '#e65100',
+                                                            fontWeight: 'bold',
+                                                            textTransform: 'uppercase'
+                                                        } : {
+                                                            color: '#ffd600',
+                                                            fontWeight: 'bold',
+                                                            textTransform: 'uppercase'
+                                                        }
+
+                                                    }>{item.severity}</TableCell>
+                                                    <TableCell>{item.status}</TableCell>
+                                                    <TableCell>
+                                                        <IconButton>
+                                                            <OpenInNewIcon />
+                                                        </IconButton>
+                                                        <IconButton style={{ color: 'red' }}>
+                                                            <CloseIcon />
+                                                        </IconButton>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        ) : (
+                                            <TableRow>
+                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Active Alarms</TableCell>
+                                            </TableRow>
+                                        )
+                                    }
+                                    
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={10}
-                        rowsPerPage={10}
-                        page={1}
-                        // onChangePage={}
-                        // onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
                     </Paper>
                 </Grid>
             </Grid>
@@ -247,6 +453,17 @@ const Home = () => {
                     {alertMsg}
                 </Alert>
             </Snackbar> 
+
+            <tooltip title={'Add Building'} placement={'top'}>
+                <Fab color="secondary" aria-label="add" 
+                style={{ position: 'fixed', bottom: '20px', right: '5px' }}
+                onClick={handlerAddBuilding}>
+                    <AddIcon />
+                </Fab>
+            </tooltip>
+
+            {addBuildingDialog}
+
 
 
         </Fragment>

@@ -36,6 +36,15 @@ router.get('/devices/:floorId', Auth, FloorController.getFloorDevices);
 */
 router.get('/floorDetail/:floorId', Auth, FloorController.getFloorDetails);
 
+
+/*
+    API : /api/elegante/v1/building/getFloorAlarms/:floorId;
+    Method : GET
+    Description : Get Floor Alarms
+*/
+router.get('/getFloorAlarms/:floorId', Auth, FloorController.getFloorAlarms);
+
+
 //POST
 
 /*

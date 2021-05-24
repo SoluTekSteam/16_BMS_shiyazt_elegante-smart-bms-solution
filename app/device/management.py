@@ -106,7 +106,7 @@ def listDevices(collection):
 def saveDeviceTelemetry(db, deviceToken, payload: dict, ts: int) -> bool:
     try:
         collection = db.selectCollection(name='devices')
-        query = collection.find_one({'token': deviceToken}, { 'userId' : 1, 'telemetry': 1, 'metadata': 1 })
+        query = collection.find_one({'token': deviceToken}, { 'userId' : 1, 'telemetry': 1, 'metadata': 1, 'deviceType': 1, 'deviceName': 1 })
         # print(f"[DEBUG] token: {deviceToken}, query: {query}")
         search_1 = "telemetry"
         search_2 = "metadata"
@@ -132,10 +132,20 @@ def saveDeviceTelemetry(db, deviceToken, payload: dict, ts: int) -> bool:
         ret = createTelemetry(db, userId="606ff35931df8abadd48e0de", deviceId=query['_id'], telemetry=payload, ts=ts)
         if ret == True:
             print(f"[DEBUG] Telemetry Saved ...[OK]")
+            return {
+                'status': True,
+                'deviceName': query['deviceName'],
+                'deviceType': query['deviceType'],
+                'deviceId': str(query['_id'])
+            }
 
 
     except Exception as error:
         print(f"[ERROR] saveDeviceTelemetry: {error}")
+        return {
+            'status': False,
+            'msg': str(error)
+        }
 
 
 def saveDeviceMetadata(collection, deviceToken, payload: dict) -> bool:
@@ -148,11 +158,10 @@ def saveDeviceMetadata(collection, deviceToken, payload: dict) -> bool:
 def deviceHandler(db, entityToken, msgType, payload: dict):
     try:
         if msgType == "telemetry" and isinstance(payload, dict):
-            saveDeviceTelemetry(db, entityToken, payload, ts=int(time.time()))
-            return True
+            return saveDeviceTelemetry(db, entityToken, payload, ts=int(time.time()))
+            
         elif msgType == "metadata" and isinstance(payload, dict):
-            saveDeviceMetadata()
-            return True
+            return saveDeviceMetadata()
         else:
             raise Exception('Unknown msgType')
     except Exception as error:
@@ -167,6 +176,6 @@ def entityHandler(db, entityToken, msgType, payload):
             print(f'[INFO] Gateway Handler Type: {msgType}')
         else:
             print(f'Device Handler Type: {msgType}')
-            deviceHandler(db, entityToken, msgType, json.loads(payload))
+            return deviceHandler(db, entityToken, msgType, json.loads(payload))
     except Exception as error:
         print(f"[ERROR] entityHandler: {error}")
