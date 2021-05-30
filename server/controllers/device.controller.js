@@ -27,7 +27,7 @@ exports.addDevice = async(req, res) => {
         if (!query){
             return res.status(400).json({ error: 'Invalid Request' })
         }
-        const { deviceName, buildingId, floorId, deviceLabel, deviceType, isGateway } = req.body;
+        const { deviceName, buildingId, floorId, deviceLabel, deviceType, isGateway, xPos, yPos } = req.body;
         var newDevice = Device({
             userId: req.user.id,
             deviceName,
@@ -41,9 +41,32 @@ exports.addDevice = async(req, res) => {
             logs: [{
                 ts: Math.floor(Date.now()/1000),
                 msg: 'Device added'
-            }]
+            }],
+            xPos,
+            yPos
         });
         await newDevice.save();
+        res.send('OK');
+    }catch(error){
+        console.log(error.message);
+        res.status(500).send('Server Error !');
+    }
+}
+
+exports.editDevice = async(req, res) => {
+    try{
+        console.log('PUT /api/elegante/v1/device/update/:deviceId');
+        let device = await Device.findById(req.params.deviceId);
+        if (!device){
+            return res.status(400).json({ error: 'Invalid Request' })
+        }
+        const { deviceName, deviceLabel, deviceType, isGateway, xPos, yPos } = req.body;
+        deviceName ? device.deviceName = deviceName : ''
+        deviceLabel ? device.deviceLabel = deviceLabel : ''
+        deviceType ? device.deviceType = deviceType : ''
+        xPos ? device.xPos = xPos : ''
+        yPos ? device.yPos = yPos : ''
+        await device.save();
         res.send('OK');
     }catch(error){
         console.log(error.message);
@@ -55,7 +78,7 @@ exports.addDevice = async(req, res) => {
 exports.getDevices = async(req, res) => {
     console.log('GET /api/elegante/v1/device/getDevices');
     try{
-        var device = await Device.find({ userId: req.user.id }).select('deviceName deviceLabel deviceType description isGateway ts');
+        var device = await Device.find({ userId: req.user.id }).select('deviceName deviceLabel deviceType description isGateway ts xPos yPos');
         res.json(device);
     }catch(error){
         console.log(error.message);

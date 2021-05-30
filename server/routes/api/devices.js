@@ -79,11 +79,18 @@ router.post('/addDevice', [Auth, [
 //PUT
 
 /*
+    API : /api/elegante/v1/device/update/:deviceId;
+    Method : PUT
+    Description : Update Device Details
+*/
+router.put('/update/:deviceId', Auth, DeviceController.editDevice);
+
+/*
     API : /api/elegante/v1/device/clearAlarm/:alarmId;
     Method : PUT
     Description : Clear Device Alarms
 */
-router.put('/clearAlarm/:alarmId', [Auth.apply, [
+router.put('/clearAlarm/:alarmId', [Auth, [
     check('ts', 'Timestamp field is required').notEmpty(),
     check('msg', 'Message field is required').notEmpty(),
 ]], DeviceController.clearDeviceAlarm);

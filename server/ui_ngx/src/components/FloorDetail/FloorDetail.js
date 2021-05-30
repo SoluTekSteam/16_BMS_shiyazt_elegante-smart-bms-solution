@@ -16,7 +16,16 @@ import {
     TablePagination,
     Snackbar,
     Link,
-    IconButton
+    IconButton,
+    Fab,
+    Tooltip as tooltip,
+    Button,
+    TextField,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    DialogContentText,
+    DialogActions
 
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -39,7 +48,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import Marker1 from '../../assets/map-markers/1.svg';
 import CloseIcon from '@material-ui/icons/Close';
-
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 var busyIcon = new L.Icon({
     iconUrl: Marker1,
@@ -75,6 +86,9 @@ const FloorDetail = () => {
     const classes = useStyles();
 
     const { buildingid, floorid } = useParams();
+    const [addMode, setAddMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [restartComp, setRestartComp] = useState(false)
 
     const [state, setState] = useState({
         floor: {
@@ -88,9 +102,23 @@ const FloorDetail = () => {
         selected_entity: {
             _id: null,
             name: null,
-            address: null,
-            descriptin: null,
-            contact: null
+            label: null,
+            description: null,
+            type: null,
+            floorId: floorid,
+            buildingId: buildingid,
+            xPos: 0,
+            yPos: 0
+        },
+        newDevice: {
+            name: "",
+            label: "",
+            type: "",
+            floorId: floorid,
+            buildingId: buildingid,
+            xPos: 200,
+            yPos: 200
+
         },
         alarms: [],
         alarmStats: {}
@@ -146,6 +174,7 @@ const FloorDetail = () => {
                                 _id: item._id,
                                 name: item.deviceName,
                                 type: item.deviceType,
+                                label: item.deviceLabel,
                                 description: item.description,
                                 xPos: item.xPos,
                                 yPos: item.yPos
@@ -166,7 +195,7 @@ const FloorDetail = () => {
         // console.log(floorid);
         fetchDetails(floorid);
         getDevices(floorid);
-    }, []);
+    }, [restartComp]);
 
 
     useEffect(() => {
@@ -217,20 +246,369 @@ const FloorDetail = () => {
 
         fetchAlarms(floorid)
 
-    }, []);
+    }, [restartComp]);
 
 
+    const handlerRefreshComponent = () => setRestartComp(!restartComp)
+
+
+    const handlerAddDevice = () => {
+        setState(prevState => {
+            const state = {...prevState};
+            state.newDevice.name = ""
+            state.newDevice.label = ""
+            state.newDevice.type = ""
+            state.newDevice.xPos = 200
+            state.newDevice.yPos = 200
+            return state;
+        })
+        setAddMode(true)
+    }
+
+
+    const handlerAddDeviceSubmit = () => {
+        const sendRequest = async(data) => {
+            try{
+                let res = await axios.post(`api/elegante/v1/device/addDevice`, data, {
+                    headers : {
+                        "X-Authorization" : Cookies.get('elegante')
+                    },
+                });
+                // console.log(res.data);
+                if (res.status == 200){
+                    setalertType('success')
+                    setalertMsg('Device Added Successfully')
+                    setappAlert(true)
+                    setAddMode(false)
+                    handlerRefreshComponent()
+                }
+            }catch(error){
+                setalertType('error');
+                setalertMsg('Error while adding Floor');
+                setappAlert(true);
+            }
+        }
+        if(state.newDevice.name && state.newDevice.label && state.newDevice.type){
+            sendRequest({
+                deviceName: state.newDevice.name,
+                buildingId: state.newDevice.buildingId,
+                floorId: state.newDevice.floorId,
+                deviceLabel: state.newDevice.label,
+                deviceType: state.newDevice.type,
+                xPos: state.newDevice.xPos,
+                yPos: state.newDevice.yPos,
+                isGateway: false
+            })
+        }else{
+            setalertType('error');
+            setalertMsg('Please enter the required fields');
+            setappAlert(true);
+        }
+    }
+
+    const handlerNewDeviceOnChange = (type, value) => {
+        switch(type){
+            case 'name':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newDevice.name = value
+                    return state
+                })
+                break
+            case 'label':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newDevice.label = value
+                    return state
+                })
+                break
+            case 'type':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newDevice.type = value
+                    return state
+                })
+                break
+            case 'xPos':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newDevice.xPos = value
+                    return state
+                })
+                break
+            case 'yPos':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newDevice.yPos = value
+                    return state
+                })
+                break
+        }
+    }
+
+
+    const handlerEditDeviceOnChange = (type, value) => {
+        switch(type){
+            case 'name':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.name = value
+                    return state
+                })
+                break
+            case 'label':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.label = value
+                    return state
+                })
+                break
+            case 'type':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.type = value
+                    return state
+                })
+                break
+            case 'description':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.description = value
+                    return state
+                })
+                break
+            case 'xPos':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.xPos = value
+                    return state
+                })
+                break
+            case 'yPos':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.selected_entity.yPos = value
+                    return state
+                })
+                break
+        }
+    }
+
+    const handlerEditDevice = (device) => {
+        console.log(device)
+        setState(prevState => {
+            const state = {...prevState}
+            state.selected_entity._id = device._id
+            state.selected_entity.name = device.name
+            state.selected_entity.label = device.label
+            state.selected_entity.type = device.type
+            state.selected_entity.xPos = device.xPos
+            state.selected_entity.yPos = device.yPos
+            return state
+        })
+
+        setEditMode(true)
+    } 
+
+
+    const handlerEditDeviceSubmit = () => {
+        const sendRequest = async(deviceId, data) => {
+            try{
+                let res = await axios.put(`/api/elegante/v1/device/update/${deviceId}`, data, {
+                    headers : {
+                        "X-Authorization" : Cookies.get('elegante')
+                    },
+                });
+                // console.log(res.data);
+                if (res.status == 200){
+                    setalertType('success')
+                    setalertMsg('Device Updated Successfully')
+                    setappAlert(true)
+                    setEditMode(false)
+                    handlerRefreshComponent()
+                }
+            }catch(error){
+                setalertType('error');
+                setalertMsg('Error while adding Floor');
+                setappAlert(true);
+            }
+        }
+        
+        sendRequest(state.selected_entity._id, {
+            deviceName: state.selected_entity.name,
+            deviceLabel: state.selected_entity.label,
+            deviceType: state.selected_entity.type,
+            xPos: state.selected_entity.xPos,
+            yPos: state.selected_entity.yPos,
+        })
+
+    }
+
+
+    // Add New Device
+    const addDeviceDialog = (
+        <Fragment>
+            <Dialog open={addMode} onClose={() => {setAddMode(false)}}>
+                <DialogTitle>Add Device</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please add following details to add a new Device.
+                    </DialogContentText>
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Device Name"
+                        type="string"
+                        fullWidth
+                        value={state.newDevice.name}
+                        onChange={(event) => {handlerNewDeviceOnChange('name', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="label"
+                        label="Device Label"
+                        type="string"
+                        fullWidth
+                        value={state.newDevice.label}
+                        onChange={(event) => {handlerNewDeviceOnChange('label', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="type"
+                        label="Device Type"
+                        type="string"
+                        fullWidth
+                        value={state.newDevice.type}
+                        onChange={(event) => {handlerNewDeviceOnChange('type', event.target.value)}}
+                    />
+                    <Typography variant='body2' style={{ margin: '10px auto 10px 2px' }}>Please add device position coordinates </Typography>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="xPos"
+                        label="X-Cordinates"
+                        type="number"
+                        value={state.newDevice.xPos}
+                        onChange={(event) => {handlerNewDeviceOnChange('xPos', event.target.value)}}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="yPos"
+                        label="Y-Cordinates"
+                        type="number"
+                        value={state.newDevice.yPos}
+                        onChange={(event) => {handlerNewDeviceOnChange('yPos', event.target.value)}}
+                    />
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={handlerAddDeviceSubmit}>SAVE</Button>
+                    <Button color="secondary" onClick={() => {setAddMode(false)}}>CANCEL</Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment>
+    )
+
+
+    // Edit Device
+    const editDeviceDialog = (
+        <Fragment>
+            <Dialog open={editMode} onClose={() => {setEditMode(false)}}>
+                <DialogTitle>Edit Device</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please edit the device details to update.
+                    </DialogContentText>
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Device Name"
+                        type="string"
+                        fullWidth
+                        value={state.selected_entity.name}
+                        onChange={(event) => {handlerEditDeviceOnChange('name', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="label"
+                        label="Device Label"
+                        type="string"
+                        fullWidth
+                        value={state.selected_entity.label}
+                        onChange={(event) => {handlerEditDeviceOnChange('label', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="type"
+                        label="Device Type"
+                        type="string"
+                        fullWidth
+                        value={state.selected_entity.type}
+                        onChange={(event) => {handlerEditDeviceOnChange('type', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label="Device Description"
+                        type="string"
+                        fullWidth
+                        value={state.selected_entity.description}
+                        onChange={(event) => {handlerEditDeviceOnChange('description', event.target.value)}}
+                    />
+                    <Typography variant='body2' style={{ margin: '10px auto 10px 2px' }}>Please add device position coordinates </Typography>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="xPos"
+                        label="X-Cordinates"
+                        type="number"
+                        value={state.selected_entity.xPos}
+                        onChange={(event) => {handlerEditDeviceOnChange('xPos', event.target.value)}}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="yPos"
+                        label="Y-Cordinates"
+                        type="number"
+                        value={state.selected_entity.yPos}
+                        onChange={(event) => {handlerEditDeviceOnChange('yPos', event.target.value)}}
+                    />
+                    
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={handlerEditDeviceSubmit}>SAVE</Button>
+                    <Button color="secondary" onClick={() => {setEditMode(false)}}>CANCEL</Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment>
+    )
 
     return(
         <Fragment>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ border: '3px solid #9e9e9e', margin: 5, borderRadius: '10px' }}>
                     <Typography variant='h4' style={{ textAlign: 'center', fontWeight: 'bold' }}>{`${state.floor.name} Overview`}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
 
                     <Paper elevation={3}>
-                        <div style={{ height: '450px' }}>
+                        <div style={{ height: '450px', border: '1px solid #eeeeee' }}>
                             <MapContainer  center={[0,0]} minZoom={-4} bounds={bounds}  doubleClickZoom={false} crs={L.CRS.Simple} style={style}>
                                 <ImageOverlay
                                     bounds={bounds}
@@ -255,21 +633,16 @@ const FloorDetail = () => {
                                             </Marker>
                                         ))
                                         
-                                    ) : (
-                                        <Marker position={[500.25, 300.35]} icon={busyIcon}>
-                                            <Popup>
-                                                A pretty CSS3 popup. <br /> Easily customizable.
-                                            </Popup>
-                                        </Marker>
-                                    )
+                                    ) : ''
                                 }
                                 
                             </MapContainer>
                         </div>
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={4} lg={3} xl={3} >
-                    <Paper elevation={3} style={{ padding : '10px', width: '100%', height: '95%', lineHeight: '2' }}>
+                    <Paper elevation={3} style={{ padding : '10px', width: '100%', height: '95%', lineHeight: '2', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ fontWeight: 'bold', textAlign: 'center', fontSize: '28px', margin: '10px auto 20px auto' }}>{state.floor.name}</Typography>
                         <div style={{ marginTop: '10px auto 20px auto', padding: '10px', fontWeight : 500}}>
                             <Typography variant='body1' style={{ fontSize: '20px' }}>Floor No : {state.floor.no}</Typography>
@@ -290,10 +663,11 @@ const FloorDetail = () => {
                         }
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={2} lg={4} xl={4}>
-                    <Paper elevation={3} style={{ padding: '5px' }}>
+                    <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Devices List</Typography>
-                        <TableContainer style={{ height: '360px' }}>
+                        <TableContainer style={{ height: '400px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -317,31 +691,27 @@ const FloorDetail = () => {
                                                         to={`/building/${buildingid}/floor/${floorid}/device/${item._id}`} >
                                                             <PlayArrowIcon />
                                                         </IconButton>
+                                                        <IconButton
+                                                        onClick={() => {handlerEditDevice(item)}}>
+                                                            <EditIcon />
+                                                        </IconButton>
                                                     </TableCell>
                                                 </TableRow>
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={4}>1</TableCell>
+                                                <TableCell colSpan={4} style={{ 'textAlign': 'center', fontWeight: 'bold' }}>No Devices Available</TableCell>
                                             </TableRow>
                                         )
                                     }
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={state.entities.length}
-                        rowsPerPage={10}
-                        page={0}
-                        // onChangePage={}
-                        // onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Paper elevation={3} style={{ padding: '5px' }}>
+                <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Floor Alarm</Typography>
                         <TableContainer style={{ minHeight: '300px', maxHeight: '400px', overflow: 'auto' }}>
                             <Table>
@@ -404,7 +774,7 @@ const FloorDetail = () => {
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Active Alarms</TableCell>
+                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Alarms Available</TableCell>
                                             </TableRow>
                                         )
                                     }
@@ -414,6 +784,7 @@ const FloorDetail = () => {
                         </TableContainer>
                     </Paper>
                 </Grid>
+
             </Grid>
 
             <Snackbar 
@@ -425,8 +796,19 @@ const FloorDetail = () => {
                 <Alert onClose={() => {setappAlert(false)}} severity={alertType}>
                     {alertMsg}
                 </Alert>
-            </Snackbar> 
+            </Snackbar>
 
+            <tooltip title={'Add Building'} placement={'top'}>
+                <Fab color="secondary" aria-label="add" 
+                style={{ position: 'fixed', bottom: '20px', right: '5px' }}
+                onClick={handlerAddDevice}>
+                    <AddIcon />
+                </Fab>
+            </tooltip>
+
+            {addDeviceDialog}
+
+            {editDeviceDialog}
 
         </Fragment>
     );

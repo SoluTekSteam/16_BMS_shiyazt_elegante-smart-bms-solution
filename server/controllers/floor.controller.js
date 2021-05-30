@@ -98,7 +98,7 @@ exports.getFloorDevices = async(req, res) => {
         if (!query){
             return res.status(400).json({ error: 'Object doesnt exist' });
         }
-        query = await Device.find({ userId: req.user.id, floorId: req.params.floorId }).select('deviceName deviceType xPos yPos')
+        query = await Device.find({ userId: req.user.id, floorId: req.params.floorId }).select('deviceName deviceType deviceLabel xPos yPos')
         res.json(query);
     }catch(error){
         console.log(error.message);

@@ -17,7 +17,16 @@ import {
     TablePagination,
     Snackbar,
     Link,
-    IconButton
+    IconButton,
+    Fab,
+    Tooltip as tooltip,
+    Button,
+    TextField,
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    DialogContentText,
+    DialogActions
 
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -25,6 +34,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import CloseIcon from '@material-ui/icons/Close';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,6 +58,9 @@ const BuildingDetail = () => {
 
     const { buildingid } = useParams();
 
+    const [addMode, setAddMode] = useState(false)
+    const [restartComp, setRestartComp] = useState(false)
+
     const [state, setState] = useState({
         building: {
             _id: null,
@@ -57,6 +71,12 @@ const BuildingDetail = () => {
             image: null
         },
         entities: [],
+        newFloor: {
+            buildingId: null,
+            name: "",
+            floorNo: 0,
+            description: ""
+        },
         selected_entity: {
             _id: null,
             name: null,
@@ -136,7 +156,7 @@ const BuildingDetail = () => {
         console.log(buildingid);
         fetchDetails(buildingid);
         getFloors(buildingid);
-    }, []);
+    }, [restartComp]);
 
     useEffect(() => {
         const fetchAlarms = async(buildingId) => {
@@ -186,27 +206,154 @@ const BuildingDetail = () => {
 
         fetchAlarms(buildingid)
         
-    }, []);
+    }, [restartComp]);
+
+    const handlerRefreshComponent = () => setRestartComp(!restartComp)
 
 
+    const handlerAddFloor = () => {
+        setState(prevState => {
+            const state = {...prevState};
+            state.newFloor.name = ""
+            state.newFloor.floorNo = 0
+            state.newFloor.description = ""
+            return state;
+        })
+        setAddMode(true)
+    }
+
+
+    const handlerAddFloorSubmit = () => {
+        const sendRequest = async(data) => {
+            try{
+                let res = await axios.post(`/api/elegante/v1/floor/addFloor`, data, {
+                    headers : {
+                        "X-Authorization" : Cookies.get('elegante')
+                    },
+                });
+                // console.log(res.data);
+                if (res.status == 200){
+                    setalertType('success')
+                    setalertMsg('Floor Added Successfully')
+                    setappAlert(true)
+                    setAddMode(false)
+                    handlerRefreshComponent()
+                }
+            }catch(error){
+                setalertType('error');
+                setalertMsg('Error while adding Floor');
+                setappAlert(true);
+            }
+        }
+        if(state.newFloor.name && state.newFloor.floorNo && state.newFloor.description){
+            sendRequest({
+                buildingId: buildingid,
+                name: state.newFloor.name,
+                floorNo: state.newFloor.floorNo,
+                description: state.newFloor.description,
+            })
+        }else{
+            setalertType('error');
+            setalertMsg('Please enter the required fields');
+            setappAlert(true);
+        }
+    }
+
+    const handlerNewFloorOnChange = (type, value) => {
+        switch(type){
+            case 'name':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newFloor.name = value
+                    return state
+                })
+                break
+            case 'floorNo':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newFloor.floorNo = value
+                    return state
+                })
+                break
+            case 'description':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newFloor.description = value
+                    return state
+                })
+                break
+        }
+    }
+
+
+    const addFloorDialog = (
+        <Fragment>
+            <Dialog open={addMode} onClose={() => {setAddMode(false)}}>
+                <DialogTitle>Add Floor</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please add following details to add a new Floor.
+                    </DialogContentText>
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Floor Name"
+                        type="string"
+                        fullWidth
+                        value={state.newFloor.name}
+                        onChange={(event) => {handlerNewFloorOnChange('name', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="floornumber"
+                        label="Floor Number"
+                        type="number"
+                        fullWidth
+                        value={state.newFloor.floorNo}
+                        onChange={(event) => {handlerNewFloorOnChange('floorNo', event.target.value)}}
+                    />
+                    <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="description"
+                        label="Description"
+                        type="string"
+                        fullWidth
+                        multiline
+                        value={state.newFloor.description}
+                        onChange={(event) => {handlerNewFloorOnChange('description', event.target.value)}}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={handlerAddFloorSubmit}>SAVE</Button>
+                    <Button color="secondary" onClick={() => {setAddMode(false)}}>CANCEL</Button>
+                </DialogActions>
+            </Dialog>
+        </Fragment>
+    )
 
 
     return(
         <Fragment>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ border: '3px solid #9e9e9e', margin: 5, borderRadius: '10px' }}>
                     <Typography variant='h4' style={{ textAlign: 'center', fontWeight: 'bold' }}>{`${state.building.name} Overview`}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
 
-                    <Paper elevation={3}>
+                    <Paper elevation={3} style={{ border: '1px solid #eeeeee' }}>
                         <div style={{ width: '100%', height: '100%' }}>
                             <img width="100%" height="100%" src={'https://www.ubm-development.com/magazin/wp-content/uploads/2020/03/kl-main-building-d-Kopie.jpg'} />
                         </div>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={12} md={4} lg={3} xl={4} >
-                    <Paper elevation={3} style={{ padding : '5px', width: '100%', height: '95%', lineHeight: '2' }}>
+                    <Paper elevation={3} style={{ padding : '5px', width: '100%', height: '95%', lineHeight: '2', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ fontWeight: 'bold', textAlign: 'center', fontSize: '28px', margin: '10px auto 20px auto' }}>{state.building.name}</Typography>
                         <Typography variant='body1' style={{ fontSize: '20px' }}>Description : {state.building.description}</Typography>
                         <Typography variant='body1' style={{ fontSize: '20px' }}>Address : {state.building.address}</Typography>
@@ -228,9 +375,9 @@ const BuildingDetail = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} lg={4} xl={3}>
-                    <Paper elevation={3} style={{ padding: '5px' }}>
+                    <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Floors List</Typography>
-                        <TableContainer style={{ height: '360px' }}>
+                        <TableContainer style={{ height: '380px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -252,31 +399,26 @@ const BuildingDetail = () => {
                                                         to={`/building/${buildingid}/floor/${item._id}`} >
                                                             <PlayArrowIcon />
                                                         </IconButton>
+                                                        <IconButton>
+                                                            <DeleteIcon />
+                                                        </IconButton>
                                                     </TableCell>
                                                 </TableRow>
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={4}>1</TableCell>
+                                                <TableCell colSpan={4} style={{ 'textAlign': 'center', fontWeight: 'bold' }}>No Floors Available</TableCell>
                                             </TableRow>
                                         )
                                     }
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={state.entities.length}
-                        rowsPerPage={10}
-                        page={0}
-                        // onChangePage={}
-                        // onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Paper elevation={3} style={{ padding: '5px' }}>
+                <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Building Alarm</Typography>
                         <TableContainer style={{ minHeight: '300px', maxHeight: '400px', overflow: 'auto' }}>
                             <Table>
@@ -341,7 +483,7 @@ const BuildingDetail = () => {
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Active Alarms</TableCell>
+                                                <TableCell colSpan={9} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Alarms Available</TableCell>
                                             </TableRow>
                                         )
                                     }
@@ -363,6 +505,16 @@ const BuildingDetail = () => {
                     {alertMsg}
                 </Alert>
             </Snackbar> 
+        
+            <tooltip title={'Add Building'} placement={'top'}>
+                <Fab color="secondary" aria-label="add" 
+                style={{ position: 'fixed', bottom: '20px', right: '5px' }}
+                onClick={handlerAddFloor}>
+                    <AddIcon />
+                </Fab>
+            </tooltip>
+
+            {addFloorDialog}
 
 
         </Fragment>

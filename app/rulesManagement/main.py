@@ -6,7 +6,7 @@ from datetime import datetime
 def temperatureDeviceHandler(db, msg, metadata) -> None:
     try:
         print(f"[DEBUG] Temperature handler")
-        if msg['temperature'] >= 40:
+        if msg['temperature'] >= 35:
             print(f"[DEBUG] High Temperature Alert")
             alarmText = f"High Temperature alert {msg['temperature']}°C"
             print(f"[DEBUG] Device: {metadata['deviceName']}, msg: {alarmText}")
@@ -21,7 +21,7 @@ def temperatureDeviceHandler(db, msg, metadata) -> None:
                     print(notifyText)
                     sendMessage(chatId=743718652, msg=notifyText)
 
-        if msg['humidity'] >= 65:
+        if msg['humidity'] >= 60:
             print(f"[DEBUG] High Humidity Alert")
             # print(f"[DEBUG] Device: {metadata['deviceName']}, humidity: {msg['humidity']}")
             alarmText = f"High Humidity alert {msg['humidity']}%"

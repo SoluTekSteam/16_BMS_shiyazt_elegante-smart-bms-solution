@@ -105,6 +105,8 @@ const Home = () => {
 
     const [addMode, setAddMode] = useState(false);
 
+    const [restartComp, setRestartComp] = useState(false)
+
     //Notification states
     const [appAlert, setappAlert] = useState(false);
     const [alertType, setalertType] = useState('');
@@ -146,7 +148,7 @@ const Home = () => {
         }
 
         fetchDetails();
-    }, []);
+    }, [restartComp]);
 
 
     useEffect(() => {
@@ -197,8 +199,95 @@ const Home = () => {
 
         fetchAlarms()
         
-    }, []);
+    }, [restartComp]);
 
+    
+    const handlerRefreshComponent = () => setRestartComp(!restartComp)
+
+    const handlerNewBuildOnChange = (type, value) => {
+        switch(type){
+            case 'name':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.name = value
+                    return state
+                })
+                break
+            case 'address':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.address = value
+                    return state
+                })
+                break
+            case 'description':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.description = value
+                    return state
+                })
+                break
+            case 'contact':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.contact = value
+                    return state
+                })
+                break
+            case 'latitude':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.latitude = value
+                    return state
+                })
+                break
+            case 'longitude':
+                setState(prevState => {
+                    const state = {...prevState}
+                    state.newBuilding.longitude = value
+                    return state
+                })
+                break
+        }
+    }
+
+    const handlerAddBuildingSubmit = () => {
+        const sendRequest = async(data) => {
+            try{
+                let res = await axios.post(`/api/elegante/v1/building/addBuilding`, data, {
+                    headers : {
+                        "X-Authorization" : Cookies.get('elegante')
+                    },
+                });
+                // console.log(res.data);
+                if (res.status == 200){
+                    setalertType('success')
+                    setalertMsg('Building Added Successfully')
+                    setappAlert(true)
+                    setAddMode(false)
+                    handlerRefreshComponent()
+                }
+            }catch(error){
+                setalertType('error');
+                setalertMsg('Error while adding building');
+                setappAlert(true);
+            }
+        }
+        if(state.newBuilding.name && state.newBuilding.address && state.newBuilding.description){
+            sendRequest({
+                name: state.newBuilding.name,
+                description: state.newBuilding.description,
+                address: state.newBuilding.address,
+                contact: state.newBuilding.contact,
+                latitude: state.newBuilding.latitude,
+                longitude: state.newBuilding.longitude
+            })
+        }else{
+            setalertType('error');
+            setalertMsg('Please enter the required fields');
+            setappAlert(true);
+        }
+    }
 
     const addBuildingDialog = (
         <Fragment>
@@ -209,14 +298,18 @@ const Home = () => {
                         Please add following details to add a new building.
                     </DialogContentText>
                     <TextField
+                        required
                         autoFocus
                         margin="dense"
                         id="name"
                         label="Building Name"
                         type="string"
                         fullWidth
+                        value={state.newBuilding.name}
+                        onChange={(event) => {handlerNewBuildOnChange('name', event.target.value)}}
                     />
                     <TextField
+                        required
                         autoFocus
                         margin="dense"
                         id="address"
@@ -224,38 +317,61 @@ const Home = () => {
                         type="string"
                         fullWidth
                         multiline
+                        value={state.newBuilding.address}
+                        onChange={(event) => {handlerNewBuildOnChange('address', event.target.value)}}
                     />
                     <TextField
+                        required
+                        autoFocus
+                        margin="dense"
+                        id="phonenumber"
+                        label="Phone Number"
+                        type="string"
+                        fullWidth
+                        value={state.newBuilding.contact}
+                        onChange={(event) => {handlerNewBuildOnChange('contact', event.target.value)}}
+                    />
+                    <TextField
+                        required
                         autoFocus
                         margin="dense"
                         id="description"
                         label="Description"
                         type="string"
                         fullWidth
+                        value={state.newBuilding.description}
+                        onChange={(event) => {handlerNewBuildOnChange('description', event.target.value)}}
                     />
                     <TextField
+                        required
                         autoFocus
                         margin="dense"
                         id="latitude"
                         label="Latitude"
                         type="number"
+                        value={state.newBuilding.latitude}
+                        onChange={(event) => {handlerNewBuildOnChange('latitude', event.target.value)}}
                     />
                     <TextField
+                        required
                         autoFocus
                         margin="dense"
                         id="longitude"
                         label="Longitude"
                         type="number"
+                        value={state.newBuilding.longitude}
+                        onChange={(event) => {handlerNewBuildOnChange('longitude', event.target.value)}}
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button color="primary">SAVE</Button>
+                    <Button color="primary" onClick={handlerAddBuildingSubmit}>SAVE</Button>
                     <Button color="secondary" onClick={() => {setAddMode(false)}}>CANCEL</Button>
                 </DialogActions>
             </Dialog>
         </Fragment>
     )
 
+    
 
     const handlerAddBuilding = () => {
         setState(prevState => {
@@ -272,8 +388,8 @@ const Home = () => {
 
     return(
         <Fragment>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
+            <Grid container spacing={3} style={{  backgroundColor: '#fafafa' }}>
+                <Grid item xs={12} style={{ border: '3px solid #9e9e9e', margin: 5, borderRadius: '10px' }}>
                     <Typography variant='h4' style={{ textAlign: 'center', fontWeight: 'bold' }}>Buildings Overview</Typography>
                 </Grid>
                 <Grid item xs={12} sm={12} md={10} lg={8} xl={7}>
@@ -312,9 +428,9 @@ const Home = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} lg={4} xl={5}>
-                    <Paper elevation={3} style={{ padding: '5px' }}>
+                    <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Buildings List</Typography>
-                        <TableContainer style={{ height: '360px' }}>
+                        <TableContainer style={{ height: '400px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -354,19 +470,10 @@ const Home = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={state.entities.length}
-                        rowsPerPage={10}
-                        page={0}
-                        // onChangePage={}
-                        // onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Paper elevation={3} style={{ padding: '5px' }}>
+                <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Buildings Alarm</Typography>
                         <TableContainer style={{ minHeight: '300px', maxHeight: '400px', overflow: 'auto' }}>
                             <Table>

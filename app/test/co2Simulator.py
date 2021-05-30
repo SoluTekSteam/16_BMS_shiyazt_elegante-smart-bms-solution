@@ -39,10 +39,9 @@ if __name__ == "__main__":
             try:
                 next_ts = time.time() + INTERVAL
                 payload: dict = {
-                    'temperature': random.randint(20, 50),
-                    'humidity': random.randint(57, 62)
+                    'co2': random.randint(250, 350)
                 }
-                client.publish(topic='api/v1/bms/H64JIs3cJehk/telemetry', payload=json.dumps(payload))
+                client.publish(topic='api/v1/bms/71loo92Qvrlv/telemetry', payload=json.dumps(payload))
                 print(f"[INFO] Send Payload ...[OK]")
                 sleep_time = next_ts - time.time()
                 if sleep_time > 0:

@@ -100,6 +100,8 @@ const DeviceDetail = () => {
     const [alertType, setalertType] = useState('');
     const [alertMsg, setalertMsg] = useState('');
 
+    const [refresh, setRefresh] = useState(false)
+
     useEffect(() => {
         const fetchDetails = async(deviceId) => {
             try{
@@ -140,7 +142,7 @@ const DeviceDetail = () => {
                     },
                 });
                 if(res.status == 200){
-                    // console.log(res.data);
+                    console.log(res.data);
                     if(res.data.telemetry){
                         setState(prevState => {
                             const state = {...prevState};
@@ -217,10 +219,11 @@ const DeviceDetail = () => {
         }
 
         fetchDeviceTelemetry(deviceid);
-    }, []);
+    }, [refresh]);
 
 
     useEffect(() => {
+
         const fetchAlarms = async(deviceId) => {
             try{
                 let res = await axios.get(`/api/elegante/v1/device/getDeviceAlarms/${deviceId}`, {
@@ -264,11 +267,19 @@ const DeviceDetail = () => {
                 Object.assign(state.alarmStats, stats)
                 return state;
             });
+
+            setTimeout(() => {
+                console.log('Refreshing ...')
+                handlerRestartComponent()
+            }, 20000)
         }
 
         fetchAlarms(deviceid)
         
-    }, []);
+        
+    }, [refresh]);
+
+    const handlerRestartComponent = () => setRefresh(!refresh)
 
     const handlerOpenDialog = (item) => {
         console.log(item);
@@ -386,11 +397,12 @@ const DeviceDetail = () => {
     return(
         <Fragment>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{ border: '3px solid #9e9e9e', margin: 5, borderRadius: '10px' }}>
                     <Typography variant='h4' style={{ textAlign: 'center', fontWeight: 'bold' }}>{`Device : ${state.device.name}`}</Typography>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={4} lg={3} xl={4} >
-                    <Paper elevation={3} style={{ padding : '5px', width: '100%', height: '95%', lineHeight: '2' }}>
+                    <Paper elevation={3} style={{ padding : '5px', width: '100%', height: '95%', lineHeight: '2', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ fontWeight: 'bold', textAlign: 'center', fontSize: '28px', margin: '10px auto 20px auto' }}>{state.device.name}</Typography>
                         <Typography variant='body1' style={{ fontSize: '20px' }}>Device Label : {state.device.label}</Typography>
                         <Typography variant='body1' style={{ fontSize: '20px' }}>Device Type : {state.device.type}</Typography>
@@ -404,10 +416,11 @@ const DeviceDetail = () => {
                         }
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={12} md={2} lg={4} xl={3}>
-                    <Paper elevation={3} style={{ padding: '5px' }}>
+                    <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Latest Telemetry</Typography>
-                        <TableContainer style={{ height: '360px' }}>
+                        <TableContainer style={{ height: '400px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -436,22 +449,13 @@ const DeviceDetail = () => {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <TablePagination
-                        rowsPerPageOptions={[10, 25, 100]}
-                        component="div"
-                        count={state.entities.length}
-                        rowsPerPage={10}
-                        page={0}
-                        // onChangePage={}
-                        // onChangeRowsPerPage={handleChangeRowsPerPage}
-                        />
                     </Paper>
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
-                    <Paper elevation={3}>
+                    <Paper elevation={3} style={{  border: '1px solid #eeeeee' }}>
                         <Typography variant='h6' style={{ marginLeft: '10px' }}>Telemetry Logs</Typography>
-                        <TableContainer style={{ height: '360px', maxHeight: '400px', overflow: true }}>
+                        <TableContainer style={{ height: '400px', maxHeight: '400px', overflow: true }}>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -475,7 +479,7 @@ const DeviceDetail = () => {
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={3}>No Entries Found</TableCell>
+                                                <TableCell colSpan={3} style={{ 'textAlign': 'center', fontWeight: 'bold' }}>No Entries Found</TableCell>
                                             </TableRow>
                                         )
                                     }
@@ -554,7 +558,7 @@ const DeviceDetail = () => {
                                             ))
                                         ) : (
                                             <TableRow>
-                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Active Alarms</TableCell>
+                                                <TableCell colSpan={8} style={{ textAlign: 'center', fontWeight: 'bold' }}>No Alarms Available</TableCell>
                                             </TableRow>
                                         )
                                     }
