@@ -2,3 +2,5 @@ env/*
 server/node_modules/*
 server/ui_ngx/node_modules/*
 server/ui_ngx/build/*
+node_modules/*
+package-lock.json
