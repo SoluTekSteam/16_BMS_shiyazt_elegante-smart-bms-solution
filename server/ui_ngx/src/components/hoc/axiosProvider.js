@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'http://165.232.177.248/backend'
   });
 
 export default instance;

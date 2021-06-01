@@ -25,4 +25,4 @@ app.use('/api/elegante/v1/device', require('./routes/api/devices'));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`[INFO] Server started on port ${PORT} ...[OK]`));
+app.listen(PORT, 'localhost', () => console.log(`[INFO] Server started on port ${PORT} ...[OK]`));
