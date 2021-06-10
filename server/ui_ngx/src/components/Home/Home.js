@@ -51,7 +51,7 @@ import Marker1 from '../../assets/map-markers/1.svg';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import CloseIcon from '@material-ui/icons/Close';
-
+import RestoreIcon from '@material-ui/icons/Restore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,7 +72,7 @@ var busyIcon = new L.Icon({
     iconUrl: Marker1,
     iconAnchor: [20, 40],
     popupAnchor: [0, -35],
-    iconSize: [80, 80],
+    iconSize: [50, 50],
     shadowSize: [29, 40],
     shadowAnchor: [7, 40],
 });
@@ -88,10 +88,12 @@ const Home = () => {
             id: null,
             name: null,
             address: null,
-            descriptin: null,
+            description: null,
             contact: null
         },
         alarms: [],
+        filteredAlarms: [],
+        filteredEntities: [],
         alarmStats: {},
         newBuilding: {
             name: "",
@@ -136,6 +138,7 @@ const Home = () => {
                                 contact: item.contact
                             });
                         });
+                        state.filteredEntities = state.entities
                         return state;
                     });
                     console.log(state);
@@ -167,6 +170,7 @@ const Home = () => {
                         res.data.forEach(item => {
                             state.alarms.push(item)
                         })
+                        state.filteredAlarms = state.alarms
                         return state;
                     });
                     // console.log(state);
@@ -386,6 +390,30 @@ const Home = () => {
         setAddMode(true)
     }
 
+
+    const handlerSelectBuilding = (item) => {
+        // console.log(item)
+        setState(prevState => {
+            const state = {...prevState};
+            state.selected_entity.id = item._id
+            state.selected_entity.name = item.name
+            state.filteredAlarms = state.alarms.filter(item => item.buildingName == state.selected_entity.name)
+            state.filteredEntities = state.entities.filter(item => item._id == state.selected_entity.id)
+            return state;
+        })
+    }
+
+    const handlerResetFilter = () => {
+        setState(prevState => {
+            const state = {...prevState}
+            state.selected_entity.id = null
+            state.selected_entity.name = null
+            state.filteredAlarms = state.alarms
+            state.filteredEntities = state.entities
+            return state
+        })
+    }
+
     return(
         <Fragment>
             <Grid container spacing={3} style={{  backgroundColor: '#fafafa' }}>
@@ -401,8 +429,8 @@ const Home = () => {
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
                             {
-                                state.entities && state.entities.length > 0 ? (
-                                    state.entities.map((item, index) => (
+                                state.filteredEntities && state.filteredEntities.length > 0 ? (
+                                    state.filteredEntities.map((item, index) => (
                                         <Marker key={index} position={[item.latitude, item.longitude]} icon={busyIcon}>
                                             <Tooltip 
                                             permanent
@@ -429,7 +457,21 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={2} lg={4} xl={5}>
                     <Paper elevation={3} style={{ padding: '5px', border: '1px solid #eeeeee' }}>
-                        <Typography variant='h6' style={{ marginLeft: '10px' }}>Buildings List</Typography>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 5 }}>
+                            <Typography variant='h6' style={{ marginLeft: '10px' }}>Buildings List</Typography>
+                            <Button
+                            disabled={state.selected_entity.id == null}
+                            variant="outlined"
+                            color="primary"
+                            endIcon={<RestoreIcon />}
+                            onClick={handlerResetFilter}>
+                                Reset
+                            </Button>
+                            {/* <IconButton style={{ backgroundColor: '#ffc107', color: 'black' }}>
+                                <RestoreIcon />
+                            </IconButton> */}
+                        </div>
+                        
                         <TableContainer style={{ height: '400px', overflow: 'auto' }}>
                             <Table>
                                 <TableHead>
@@ -449,12 +491,13 @@ const Home = () => {
                                                     <TableCell>{item.name}</TableCell>
                                                     <TableCell>{item.contact}</TableCell>
                                                     <TableCell>
-                                                    <IconButton>
+                                                        <IconButton
+                                                        component={Linker}
+                                                        to={`/building/${item._id}`}>
                                                             <OpenInNewIcon />
                                                         </IconButton>
                                                         <IconButton
-                                                        component={Linker}
-                                                        to={`/building/${item._id}`} >
+                                                        onClick={() => {handlerSelectBuilding(item)}}>
                                                             <PlayArrowIcon />
                                                         </IconButton>
                                                         
@@ -492,8 +535,8 @@ const Home = () => {
                                 </TableHead>
                                 <TableBody>
                                     {
-                                        state.alarms && state.alarms.length > 0 ? (
-                                            state.alarms.map((item, index) => (
+                                        state.filteredAlarms && state.filteredAlarms.length > 0 ? (
+                                            state.filteredAlarms.map((item, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell>{moment(item.ts * 1000).format('DD/MM/YY HH:mm:ss')}</TableCell>
                                                     {

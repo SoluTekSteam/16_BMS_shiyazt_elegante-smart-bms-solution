@@ -1,0 +1,778 @@
+[DEBUG] dbConnect: True
+[INFO] MQTT Connetion Successfull ...[OK]
+[DEBUG] dbConnect: True
+[INFO] MQTT Connetion Successfull ...[OK]
+[DEBUG] Subscribed to rule chain messages
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 37, "humidity": 60}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 37, 'humidity': 60}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Temperature Alert
+[DEBUG] Device: Effento-3568, msg: High Temperature alert 37°C
+TEMPERATURE ALARM Alarm Created
+[DEBUG] Temperature Alarm Created
+Found OK
+{'_id': ObjectId('60b869b3f8462c80318d1959'), 'severity': 'critical', 'status': 'active unacknowledged', 'createdTime': 1622698419, 'type': 'TEMPERATURE ALARM', 'msg': 'High Temperature alert 37°C', 'ts': 1622698419, 'buildingName': 'Edificio/León/01', 'floorName': 'Thrid Floor', 'deviceName': 'Effento-3568'}
+Dear User, 
+ Alert! TEMPERATURE ALARM 
+ Alarm: High Temperature alert 37°C 
+ Severity: critical 
+ Status: active unacknowledged 
+ Building: Edificio/León/01 
+ Floor: Thrid Floor 
+ Device: Effento-3568 
+ Created at: 03/06/2021, 05:33:39
+{'chat_id': 743718652, 'text': 'Dear User, \n Alert! TEMPERATURE ALARM \n Alarm: High Temperature alert 37°C \n Severity: critical \n Status: active unacknowledged \n Building: Edificio/León/01 \n Floor: Thrid Floor \n Device: Effento-3568 \n Created at: 03/06/2021, 05:33:39'}
+200
+OK
+{"ok":true,"result":{"message_id":168,"from":{"id":1269950674,"is_bot":true,"first_name":"NotifyerDev","username":"shiyaz_dev_test_bot"},"chat":{"id":743718652,"first_name":"Shiyaz","last_name":"T","username":"ShiyazT","type":"private"},"date":1622698420,"text":"Dear User, \n Alert! TEMPERATURE ALARM \n Alarm: High Temperature alert 37\u00b0C \n Severity: critical \n Status: active unacknowledged \n Building: Edificio/Le\u00f3n/01 \n Floor: Thrid Floor \n Device: Effento-3568 \n Created at: 03/06/2021, 05:33:39"}}
+[DEBUG] High Humidity Alert
+[DEBUG] Device: Effento-3568, msg: High Humidity alert 60%
+HUMIDITY ALARM Alarm Created
+[DEBUG] Humidity Alarm Created
+Found OK
+{'_id': ObjectId('60b869b4f8462c80318d195a'), 'severity': 'warning', 'status': 'active unacknowledged', 'createdTime': 1622698420, 'type': 'HUMIDITY ALARM', 'msg': 'High Humidity alert 60%', 'ts': 1622698420, 'buildingName': 'Edificio/León/01', 'floorName': 'Thrid Floor', 'deviceName': 'Effento-3568'}
+Dear User, 
+ Alert! HUMIDITY ALARM 
+ Alarm: High Humidity alert 60% 
+ Severity: warning 
+ Status: active unacknowledged 
+ Building: Edificio/León/01 
+ Floor: Thrid Floor 
+ Device: Effento-3568 
+ Created at: 03/06/2021, 05:33:40
+{'chat_id': 743718652, 'text': 'Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: Edificio/León/01 \n Floor: Thrid Floor \n Device: Effento-3568 \n Created at: 03/06/2021, 05:33:40'}
+200
+OK
+{"ok":true,"result":{"message_id":169,"from":{"id":1269950674,"is_bot":true,"first_name":"NotifyerDev","username":"shiyaz_dev_test_bot"},"chat":{"id":743718652,"first_name":"Shiyaz","last_name":"T","username":"ShiyazT","type":"private"},"date":1622698420,"text":"Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: Edificio/Le\u00f3n/01 \n Floor: Thrid Floor \n Device: Effento-3568 \n Created at: 03/06/2021, 05:33:40"}}
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 22, "humidity": 62}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 22, 'humidity': 62}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Humidity Alert
+[DEBUG] Device: Effento-3568, msg: High Humidity alert 62%
+[DEBUG] Clearing Alarm ...
+Alarm Updated
+[ERROR] createAlarm: 'UpdateResult' object has no attribute 'inserted_id'
+[ERROR] temperatureHandler: 'NoneType' object is not subscriptable
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 39, "humidity": 57}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 39, 'humidity': 57}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Temperature Alert
+[DEBUG] Device: Effento-3568, msg: High Temperature alert 39°C
+[DEBUG] Clearing Alarm ...
+Alarm Updated
+[ERROR] createAlarm: 'UpdateResult' object has no attribute 'inserted_id'
+[ERROR] temperatureHandler: 'NoneType' object is not subscriptable
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 35, "humidity": 57}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 35, 'humidity': 57}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Temperature Alert
+[DEBUG] Device: Effento-3568, msg: High Temperature alert 35°C
+[DEBUG] Clearing Alarm ...
+Alarm Updated
+[ERROR] createAlarm: 'UpdateResult' object has no attribute 'inserted_id'
+[ERROR] temperatureHandler: 'NoneType' object is not subscriptable
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 26, "humidity": 59}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 26, 'humidity': 59}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+HUMIDITY ALARM Alarm Cleared
+api/v1/bms/jdogiHmzNwcaBA0z/telemetry b'{"temperature": 23, "humidity": 59}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 23, 'humidity': 59}, 'metadata': {'deviceName': 'Effento-3568', 'deviceType': 'temperature', 'deviceId': '60b866002b7fa80bd2e7113e'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+api/v1/bms/CutFLEnAzlfAG2LN/telemetry b'{"temperature": 48, "humidity": 60}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 48, 'humidity': 60}, 'metadata': {'deviceName': 'устройство/01', 'deviceType': 'temperature', 'deviceId': '60b86a9f2b7fa80bd2e71143'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Temperature Alert
+[DEBUG] Device: устройство/01, msg: High Temperature alert 48°C
+TEMPERATURE ALARM Alarm Created
+[DEBUG] Temperature Alarm Created
+Found OK
+{'_id': ObjectId('60b86aaef8462c80318d195b'), 'severity': 'critical', 'status': 'active unacknowledged', 'createdTime': 1622698670, 'type': 'TEMPERATURE ALARM', 'msg': 'High Temperature alert 48°C', 'ts': 1622698670, 'buildingName': 'строительство/01', 'floorName': 'First Floor', 'deviceName': 'устройство/01'}
+Dear User, 
+ Alert! TEMPERATURE ALARM 
+ Alarm: High Temperature alert 48°C 
+ Severity: critical 
+ Status: active unacknowledged 
+ Building: строительство/01 
+ Floor: First Floor 
+ Device: устройство/01 
+ Created at: 03/06/2021, 05:37:50
+{'chat_id': 743718652, 'text': 'Dear User, \n Alert! TEMPERATURE ALARM \n Alarm: High Temperature alert 48°C \n Severity: critical \n Status: active unacknowledged \n Building: строительство/01 \n Floor: First Floor \n Device: устройство/01 \n Created at: 03/06/2021, 05:37:50'}
+200
+OK
+{"ok":true,"result":{"message_id":170,"from":{"id":1269950674,"is_bot":true,"first_name":"NotifyerDev","username":"shiyaz_dev_test_bot"},"chat":{"id":743718652,"first_name":"Shiyaz","last_name":"T","username":"ShiyazT","type":"private"},"date":1622698670,"text":"Dear User, \n Alert! TEMPERATURE ALARM \n Alarm: High Temperature alert 48\u00b0C \n Severity: critical \n Status: active unacknowledged \n Building: \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e/01 \n Floor: First Floor \n Device: \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e/01 \n Created at: 03/06/2021, 05:37:50"}}
+[DEBUG] High Humidity Alert
+[DEBUG] Device: устройство/01, msg: High Humidity alert 60%
+HUMIDITY ALARM Alarm Created
+[DEBUG] Humidity Alarm Created
+Found OK
+{'_id': ObjectId('60b86aaef8462c80318d195c'), 'severity': 'warning', 'status': 'active unacknowledged', 'createdTime': 1622698670, 'type': 'HUMIDITY ALARM', 'msg': 'High Humidity alert 60%', 'ts': 1622698670, 'buildingName': 'строительство/01', 'floorName': 'First Floor', 'deviceName': 'устройство/01'}
+Dear User, 
+ Alert! HUMIDITY ALARM 
+ Alarm: High Humidity alert 60% 
+ Severity: warning 
+ Status: active unacknowledged 
+ Building: строительство/01 
+ Floor: First Floor 
+ Device: устройство/01 
+ Created at: 03/06/2021, 05:37:50
+{'chat_id': 743718652, 'text': 'Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: строительство/01 \n Floor: First Floor \n Device: устройство/01 \n Created at: 03/06/2021, 05:37:50'}
+200
+OK
+{"ok":true,"result":{"message_id":171,"from":{"id":1269950674,"is_bot":true,"first_name":"NotifyerDev","username":"shiyaz_dev_test_bot"},"chat":{"id":743718652,"first_name":"Shiyaz","last_name":"T","username":"ShiyazT","type":"private"},"date":1622698671,"text":"Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e/01 \n Floor: First Floor \n Device: \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e/01 \n Created at: 03/06/2021, 05:37:50"}}
+api/v1/bms/CutFLEnAzlfAG2LN/telemetry b'{"temperature": 22, "humidity": 57}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 22, 'humidity': 57}, 'metadata': {'deviceName': 'устройство/01', 'deviceType': 'temperature', 'deviceId': '60b86a9f2b7fa80bd2e71143'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+HUMIDITY ALARM Alarm Cleared
+api/v1/bms/CutFLEnAzlfAG2LN/telemetry b'{"temperature": 30, "humidity": 60}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 30, 'humidity': 60}, 'metadata': {'deviceName': 'устройство/01', 'deviceType': 'temperature', 'deviceId': '60b86a9f2b7fa80bd2e71143'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Humidity Alert
+[DEBUG] Device: устройство/01, msg: High Humidity alert 60%
+HUMIDITY ALARM Alarm Created
+[DEBUG] Humidity Alarm Created
+Found OK
+{'_id': ObjectId('60b86ac1f8462c80318d195d'), 'severity': 'warning', 'status': 'active unacknowledged', 'createdTime': 1622698689, 'type': 'HUMIDITY ALARM', 'msg': 'High Humidity alert 60%', 'ts': 1622698689, 'buildingName': 'строительство/01', 'floorName': 'First Floor', 'deviceName': 'устройство/01'}
+Dear User, 
+ Alert! HUMIDITY ALARM 
+ Alarm: High Humidity alert 60% 
+ Severity: warning 
+ Status: active unacknowledged 
+ Building: строительство/01 
+ Floor: First Floor 
+ Device: устройство/01 
+ Created at: 03/06/2021, 05:38:09
+{'chat_id': 743718652, 'text': 'Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: строительство/01 \n Floor: First Floor \n Device: устройство/01 \n Created at: 03/06/2021, 05:38:09'}
+200
+OK
+{"ok":true,"result":{"message_id":172,"from":{"id":1269950674,"is_bot":true,"first_name":"NotifyerDev","username":"shiyaz_dev_test_bot"},"chat":{"id":743718652,"first_name":"Shiyaz","last_name":"T","username":"ShiyazT","type":"private"},"date":1622698690,"text":"Dear User, \n Alert! HUMIDITY ALARM \n Alarm: High Humidity alert 60% \n Severity: warning \n Status: active unacknowledged \n Building: \u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c\u0441\u0442\u0432\u043e/01 \n Floor: First Floor \n Device: \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e/01 \n Created at: 03/06/2021, 05:38:09"}}
+api/v1/bms/CutFLEnAzlfAG2LN/telemetry b'{"temperature": 39, "humidity": 60}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'temperature': 39, 'humidity': 60}, 'metadata': {'deviceName': 'устройство/01', 'deviceType': 'temperature', 'deviceId': '60b86a9f2b7fa80bd2e71143'}}
+[DEBUG] Received MQTT Message
+[DEBUG] Rule Management
+[DEBUG] Temperature handler
+[DEBUG] High Temperature Alert
+[DEBUG] Device: устройство/01, msg: High Temperature alert 39°C
+[DEBUG] Clearing Alarm ...
+Alarm Updated
+[ERROR] createAlarm: 'UpdateResult' object has no attribute 'inserted_id'
+[ERROR] temperatureHandler: 'NoneType' object is not subscriptable
+[DEBUG] dbConnect: True
+[INFO] MQTT Connetion Successfull ...[OK]
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18.48233281061418, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18.48233281061418, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 14.736670693619265, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 14.736670693619265, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17.89891012138468, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17.89891012138468, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 14, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 14, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 12, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 12, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 4, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 4, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 4, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 4, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 16, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 16, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 4, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 4, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 14, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 14, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 2, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 2, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 16, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 16, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 19, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 19, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 4, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 4, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 2, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 2, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 13, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 13, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 13, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 13, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 19, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 19, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 19, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 19, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 13, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 13, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 2, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 2, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 2, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 2, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 12, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 12, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 2, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 2, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 3, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 3, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 16, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 16, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 16, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 16, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 4, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 4, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 12, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 12, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 19, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 19, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 3, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 3, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 12, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 12, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 5, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 5, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 8, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 8, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 7, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 7, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 15, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 15, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 6, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 6, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 5, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 5, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 12, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 12, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 10, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 10, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 17, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 17, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 350}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 350}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 272}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 272}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 335}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 335}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 332}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 332}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 250}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 250}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 273}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 273}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 303}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 303}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEu0tcA3/telemetry b'{"co2": 326}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 326}, 'metadata': {'deviceName': 'GF/DHT-0', 'deviceType': 'temperature', 'deviceId': '60b5fe5765525c57ad414bb3'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 288}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 288}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 314}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 314}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 301}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 301}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 252}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 252}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 349}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 349}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/1LLyEEuyti0tcA3/telemetry b'{"co2": 311}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'co2': 311}, 'metadata': {'deviceName': 'GF/CO1', 'deviceType': 'co', 'deviceId': '60b5ff4965525c57ad414bb7'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 11, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 11, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 14, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 14, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 9, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 9, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 14, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 14, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 18, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 18, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}
+api/v1/bms/CsaPBgt1ndKlPqJN/telemetry b'{"peopleCount": 16, "scanArea": 200}'
+Device Handler Type: telemetry
+[DEBUG] Latest Telemetry Updated ...[OK]
+[DEBUG] Telemetry Saved ...[OK]
+[DEBUG] deviceData: {'msg': {'peopleCount': 16, 'scanArea': 200}, 'metadata': {'deviceName': 'F1-CNTR-01', 'deviceType': 'peoplecounter', 'deviceId': '60c049fee0a141097e9bb39e'}}

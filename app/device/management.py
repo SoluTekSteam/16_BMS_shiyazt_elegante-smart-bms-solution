@@ -129,7 +129,7 @@ def saveDeviceTelemetry(db, deviceToken, payload: dict, ts: int) -> bool:
         if ret:
             print(f"[DEBUG] Latest Telemetry Updated ...[OK]")
 
-        ret = createTelemetry(db, userId="606ff35931df8abadd48e0de", deviceId=query['_id'], telemetry=payload, ts=ts)
+        ret = createTelemetry(db, userId=query['userId'], deviceId=query['_id'], telemetry=payload, ts=ts)
         if ret == True:
             print(f"[DEBUG] Telemetry Saved ...[OK]")
             return {
@@ -179,3 +179,23 @@ def entityHandler(db, entityToken, msgType, payload):
             return deviceHandler(db, entityToken, msgType, json.loads(payload))
     except Exception as error:
         print(f"[ERROR] entityHandler: {error}")
+
+
+
+def getDeviceID(db, entityToken) -> dict:
+    try:
+        collection = db.selectCollection(name='devices')
+        query = collection.find_one({'token': entityToken}, {'userId': 1})
+        if query:
+            return {
+                'status': True,
+                'deviceId': query['_id']
+            }
+        else:
+            raise Exception('Query Failed')
+    except Exception as error:
+        print(f"[ERROR] getDeviceID: {error}")
+        return {
+                'status': False,
+                'reason': error
+            }

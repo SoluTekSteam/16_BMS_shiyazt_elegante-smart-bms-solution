@@ -2,6 +2,7 @@
 from alarm.management import createAlarm, clearAlarm, getAlarmDetails
 from notifications.telegram import sendMessage
 from datetime import datetime
+from rulesManagement.peopleCounterEngine import ppl_counter_rule
 
 def temperatureDeviceHandler(db, msg, metadata) -> None:
     try:
@@ -56,6 +57,8 @@ def dataHandler(db, payload: dict) -> None:
         if payload['metadata']:
             if payload['metadata']['deviceType'].lower() == "temperature":
                 return temperatureDeviceHandler(db, msg=payload['msg'], metadata=payload['metadata'])
+            elif payload['metadata']['deviceType'].lower() == "peoplecounter":
+                return ppl_counter_rule(db, msg=payload['msg'], metadata=payload['metadata'])
 
     except Exception as error:
         print(f"[ERROR] dataHandler: {error}")

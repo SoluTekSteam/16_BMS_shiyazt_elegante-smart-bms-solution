@@ -12,6 +12,17 @@ const Telemetry = require('../models/Telemetry');
 const Alarm = require('../models/Alarm');
 
 
+// UUID Generator
+const generateUUID = (len) => {
+    var arr = 'ABCDEFGHIJKLabcdefghijklmnopqrstuvwxyz0123456789MNOPQRST';
+    var ans = '';
+    for(var i= len; i > 0; i--){
+        ans += arr[Math.floor(Math.random() * arr.length)];
+    }
+    return ans;
+}
+
+
 exports.addDevice = async(req, res) => {
     console.log('POST /api/elegante/v1/device');
     const errors = validationResult(req);
@@ -36,6 +47,8 @@ exports.addDevice = async(req, res) => {
             deviceLabel,
             deviceType,
             isGateway,
+            key: generateUUID(24),
+            token: generateUUID(16),
             metadata: {},
             telemetry: {},
             logs: [{

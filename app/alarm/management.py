@@ -129,6 +129,8 @@ def clearAlarm(db, deviceId: str, alarmSeverity: str, alarmType: str, msg: str) 
     try:
         collection = db.selectCollection(name='alarms')
         query = collection.find_one({ 'originator': ObjectId(deviceId), 'type': alarmType, 'severity': alarmSeverity, 'active': True })
+        print('[DEBUG] clearAlarm')
+        print(query)
         if query:
             ret = collection.update_one({ "_id": ObjectId(query["_id"]) }, 
                 { 
@@ -147,6 +149,9 @@ def clearAlarm(db, deviceId: str, alarmSeverity: str, alarmType: str, msg: str) 
                     } 
                 })
             print(f'{alarmType} Alarm Cleared')
+            return True
+        else:
+            return False
     except Exception as error:
         print(f"[ERROR] createAlarm: {error}")
 
