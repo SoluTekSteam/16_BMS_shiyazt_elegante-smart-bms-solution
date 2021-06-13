@@ -48,6 +48,29 @@ def temperatureDeviceHandler(db, msg, metadata) -> None:
 
 
 
+"""
+Smoke Detector
+True  Detects Fire
+False Otherwise
+"""
+def smokeDetectorHandler(db, msg, metadata) -> None:
+    try:
+        print(f"[DEBUG] Smoke Detector handler")
+        print(msg)
+        if msg['fireDetection'] == True:
+            print(f"[DEBUG] Smoke Detector Alert")
+            alarmText = f"Smoke Detector Alert"
+            print(f"[DEBUG] Device: {metadata['deviceName']}, msg: {alarmText}")
+            ret = createAlarm(db, deviceId=metadata['deviceId'], alarmSeverity='critical', alarmStatus='active unacknowledged', alarmType='FIRE ALARM', msg=alarmText)
+            if ret['status']:
+                print(f"[DEBUG] Fire Alarm Created")
+        else:
+            alarmText = f"Smoke Detector alert cleared"
+            ret = clearAlarm(db, deviceId=metadata['deviceId'], alarmSeverity='critical', alarmType='FIRE ALARM', msg=alarmText)
+        
+    except Exception as error:
+        print(f"[ERROR] smokeDetectorHandler: {error}")
+
 """"
 Description : Control Center Data Handler
 """
@@ -59,6 +82,8 @@ def dataHandler(db, payload: dict) -> None:
                 return temperatureDeviceHandler(db, msg=payload['msg'], metadata=payload['metadata'])
             elif payload['metadata']['deviceType'].lower() == "peoplecounter":
                 return ppl_counter_rule(db, msg=payload['msg'], metadata=payload['metadata'])
+            elif payload['metadata']['deviceType'].lower() == "smoke":
+                return smokeDetectorHandler(db, msg=payload['msg'], metadata=payload['metadata'])
 
     except Exception as error:
         print(f"[ERROR] dataHandler: {error}")
