@@ -1,4 +1,4 @@
-# elegante-smart-bms-solution
+# Elegante Connected Smart Building Solution
 Elegante Smart BMS Solution
 
 ## License
