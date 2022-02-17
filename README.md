@@ -18,6 +18,8 @@ Elegante Smart BMS Solution
 
 ## Application Overview
 
+Open Source Application for Smart Connected Buildings
+
 #### Login Section
 
 ![Login Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/login1.png)
@@ -26,3 +28,32 @@ Elegante Smart BMS Solution
 #### Signup Section for new users
 
 ![Login Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/signup.png)
+
+
+### Home Dashboard Page
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/page_0.png)
+
+### Building Overview
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/page_1.png)
+
+
+### Floor Level View
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/page_2.png)
+
+### Device Level Overview
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/page_3.png)
+
+### User Defined Alarms
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/alarm.png)
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/alarm1.png)
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/alarm3.png)
+
+### User Alerts
+
+![Home Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/alarm_alert.png)
