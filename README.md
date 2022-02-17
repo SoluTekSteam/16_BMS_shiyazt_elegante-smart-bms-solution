@@ -14,3 +14,15 @@ Elegante Smart BMS Solution
 <img alt="Raspberry Pi" src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi"/>
 <img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"/>
 <img alt="Nginx" src="https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white"/>
+
+
+## Application Overview
+
+#### Login Section
+
+![Login Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/login1.png)
+
+
+#### Signup Section for new users
+
+![Login Page](https://github.com/shiyazt/elegante-smart-bms-solution/blob/main/Pictures/signup.png)
