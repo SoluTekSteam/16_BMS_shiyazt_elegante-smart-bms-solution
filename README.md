@@ -18,7 +18,7 @@ Elegante Smart BMS Solution
 
 ## Application Overview
 
-Open Source Application for Smart Connected Buildings
+Open Source IoT Application for Smart Connected Buildings
 
 #### Login Section
 
